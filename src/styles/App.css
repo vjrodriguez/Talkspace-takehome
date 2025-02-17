@@ -1,0 +1,45 @@
+.app_container{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-flow: column wrap;
+}
+
+.main {
+  display: flex;
+  flex:2;
+  flex-direction: row;
+}
+
+div.avatar_creator{
+  display: flex;
+  flex: 9;
+  flex-flow: column nowrap;
+}
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+.avatar_list{
+  display: flex;
+  flex: 3;
+  flex-flow:row nowrap;
+  justify-items: stretch;
+  height: 100vh;
+  box-shadow: inset 1px -3px 5px rgba(0,0,0, 0.2);
+  overflow: scroll;
+}
+
+.avatar_list ul {
+  display:flex;
+  flex: 3;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}

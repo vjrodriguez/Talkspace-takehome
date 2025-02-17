@@ -1,0 +1,33 @@
+.options_picker_container {
+  display:flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  background-color: #fff;
+  overflow: hidden;
+  border: 1px solid #eee;
+  margin-top: 32px;
+}
+
+.option_selection:hover{
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5)
+}
+
+.option_selection:active{
+  box-shadow: 0px 0px 8px rgba(157, 255, 0, 0.8)
+}
+
+.options_examples {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 8px;
+}
+
+.option_selection {
+  display: block;
+  height: 100px;
+  width: 100px;
+  border-radius: 16px;
+  margin:8px;
+  overflow:hidden;
+}

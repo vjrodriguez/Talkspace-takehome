@@ -1,0 +1,14 @@
+.avatar_preview_container {
+    flex:0;
+    align-self: center;
+}
+
+.avatar_preview{
+    display: block;
+    height: 250px;
+    width: 250px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 14px 0px #aaaaaa;
+    background-color: #fff;
+    overflow:hidden;
+}
