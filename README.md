@@ -17,7 +17,7 @@ We threw together a prototype of a simple single page app that is technically wo
 
 ## How to submit
 
-**Please fork** and open a PR with your changes and in-code comments
+**Please fork and open a PR to YOUR FORK** with your changes and in-code comments
 
 Send us a link - Ideally the repo should have version control and have commits that outline your progress.
 If you are using a private repo please allow access to the emails our recruiter provides you.
