@@ -16,9 +16,10 @@ function App() {
   const [avatarOptions, setAvatarOptions] = useState(defaultRobot)
   const [avatarList, setAvatarList] = useState(useOnUpdateAvatarList)
 
-  const updateName = () => {
-    const _O = {...avatarOptions}
-    _O.name = event?.target.value
+  const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!avatarOptions) return
+    const _O = {...avatarOptions} as NonNullable<typeof avatarOptions>
+    _O.name = e.target.value
     setAvatarOptions(_O)    
   }
 
@@ -42,9 +43,13 @@ function App() {
 
             <div className="main">
               <div className="avatar_creator">
-                <SaveButton
-                  disabled={avatarOptions?.name==="" ? true : false} 
-                  handleOnClick={() => {saveAvatar(buildURL(avatarOptions), avatarOptions?.name)}}
+              <SaveButton
+                  disabled={!avatarOptions?.name} 
+                  handleOnClick={() => {
+                    if (avatarOptions?.name) {
+                      saveAvatar(buildURL(avatarOptions), avatarOptions.name)
+                    }
+                  }}
                 >+</SaveButton>
 
                 <AvatarPreview
@@ -80,6 +85,7 @@ function App() {
                           keyName={avatar.key}
                           name={avatar.name}
                           url={avatar.URL}
+                          key={avatar.key}
                         />
                       )
                     })
