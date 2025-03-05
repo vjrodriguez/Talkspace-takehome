@@ -103,6 +103,21 @@
   .alert-warning .alert-close {
     color: #663c00;
   }
+
+   /* Info Alert */
+.alert-info {
+  background-color: #e5f6fd;
+  color: #014361;
+}
+
+.alert-info .alert-icon {
+  background-color: #0288d1;
+  color: white;
+}
+
+.alert-info .alert-close {
+  color: #014361;
+}
   
   @keyframes slideIn {
     0% {

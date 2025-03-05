@@ -192,6 +192,7 @@ function App() {
                                     key: key
                                   })
                                   setIsEditing(true)
+                                  showAlert(`Editing ${avatar.name}`, 'info')
                                 }
                               }}
                             />
