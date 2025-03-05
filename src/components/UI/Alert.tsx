@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 import '../../styles/UI/Alert.css'
 
-export type AlertSeverity = 'success' | 'error' | 'warning' 
+export type AlertSeverity = 'success' | 'error' | 'warning' | 'info' 
 
 interface Props {
   severity: AlertSeverity
@@ -19,6 +19,8 @@ const Alert = (props: PropsWithChildren<Props>) => {
         return '✕'
       case 'warning':
         return '!'
+      case 'info':
+        return 'i'
       default:
         return ''
     }

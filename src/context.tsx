@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react"
 import { AvatarOptions, AvatarList } from "./Types"
 import Alert from "./components/UI/Alert";
+import { AlertSeverity } from "./components/UI/Alert";
 
 interface AvatarContextType {
   avatarOptions: AvatarOptions;
@@ -12,11 +13,8 @@ interface AvatarListContextType {
   setAvatarList: React.Dispatch<React.SetStateAction<AvatarList>>;
 }
 
-
-type Severity = 'error' | 'warning' | 'success';
-
 interface AlertContext {
-  showAlert: (message: string, severity: Severity) => void
+  showAlert: (message: string, severity: AlertSeverity) => void
 }
 
 export const AlertContext = createContext<AlertContext>({} as AlertContext)
