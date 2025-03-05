@@ -33,7 +33,6 @@ const RobotListItem = (props: Props) => {
   }
 
   return (
-    <>
       <li key={keyName} className="avatar_item_container">
         <span className="item_avatar">
           <img
@@ -53,7 +52,6 @@ const RobotListItem = (props: Props) => {
           onClick={() => deleteAvatar(keyName)}
           >X</button>
       </li>
-    </>
   )
 }
 
