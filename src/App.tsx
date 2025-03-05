@@ -10,24 +10,22 @@ import { generateKey,buildURL, defaultRobot } from './Services'
 import RobotListItem from './components/RobotListItem'
 import SaveButton from './components/UI/SaveButton'
 import ResetButton from './components/UI/ResetButton'
-import { AvatarOptions } from './Types'
+import { AvatarListItem, AvatarOptions } from './Types'
 
 function App() {
   const [avatarOptions, setAvatarOptions] = useState<AvatarOptions>(defaultRobot)
-  const [avatarList, setAvatarList] = useState(() => useOnUpdateAvatarList())
+  const [avatarList, setAvatarList] = useState<AvatarListItem[]>([])
   const [isSaving, setIsSaving] = useState(false)
   const [shouldResetTabs, setShouldResetTabs] = useState(false)
   const { isEditing, setIsEditing } = useContext(EditingContext)
 
   const { showAlert } = useContext(AlertContext)
 
-  // could also memoize to prevent unnecessary re-renders like: 
-  // const memoizedAvatarList = useMemo(() => useOnUpdateAvatarList(), []); 
-  // if using memoization we call setAvatarList with the memoized value
-  const memoizedAvatarList = useMemo(() => useOnUpdateAvatarList(),[])
+  // could also memoize to prevent unnecessary re-renders, but after implmenting useMemo performance took a hit and it is due to: https://stackoverflow.com/questions/53074551/when-should-you-not-use-react-memo
   useEffect(() => {
-    setAvatarList(memoizedAvatarList)
-  }, [memoizedAvatarList])
+    const storedAvatars = useOnUpdateAvatarList()
+    setAvatarList(storedAvatars)
+  }, [])
 
   const nameExists = (name: string) => {
     return avatarList.some(avatar => avatar.name.toLowerCase() === name.toLowerCase())
