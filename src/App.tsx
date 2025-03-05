@@ -19,6 +19,9 @@ function App() {
 
   const { showAlert } = useContext(AlertContext)
 
+  // could also memoize to prevent unnecessary re-renders like: 
+  // const memoizedAvatarList = useMemo(() => useOnUpdateAvatarList(), []); 
+  // if using memoization we call setAvatarList with the memoized value
   useEffect(() => {
     const storedAvatars = useOnUpdateAvatarList()
     setAvatarList(storedAvatars)
