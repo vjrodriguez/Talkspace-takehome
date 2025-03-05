@@ -13,13 +13,13 @@ const SaveButton = (props:PropsWithChildren<Props>) => {
   return (
     <>
       <button
-        className="save_button"
+        className={`save_button ${isLoading ? 'loading' : ''}`}
         disabled={disabled}
         onClick={handleOnClick}
         title="Save avatar"
         aria-label="Save avatar"
       >
-        <span className={isLoading ? 'loading' : ''}>
+        <span>
           {children}
         </span>
       </button>
