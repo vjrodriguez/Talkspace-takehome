@@ -11,7 +11,7 @@ interface Props {
 
 const RobotListItem = (props: Props) => {
   const {keyName, name, url} = props
-  const {avatarList, setAvatarList} = useContext(AvatarListContext)
+  const {setAvatarList} = useContext(AvatarListContext)
   const {showAlert} = useContext(AlertContext)
 
   const deleteAvatar = (keyN:string) => {
