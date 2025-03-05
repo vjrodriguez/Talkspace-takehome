@@ -3,7 +3,7 @@ import AvatarPreview from './components/AvatarPreview'
 import OptionsPicker from './components/OptionsPicker'
 import ColorPicker from './components/UI/ColorPicker'
 import TextInput from './components/UI/TextInput'
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState, useContext,useMemo, useCallback } from 'react'
 import { useOnUpdateAvatarList } from './Hooks'
 import { AvatarContext, AvatarURLContext, AvatarListContext, AlertContext, EditingContext } from './context'
 import { generateKey,buildURL, defaultRobot } from './Services'
@@ -123,6 +123,25 @@ function App() {
     }
   }
 
+    // Memoize the sorted avatar list
+    const sortedAvatarList = useMemo(() => {
+      return avatarList && [...avatarList].sort((a, b) => a.name.localeCompare(b.name))
+    }, [avatarList])
+
+    // Memoize the onEdit handler
+    const handleEdit = useCallback((key: string) => {
+      const item = localStorage.getItem(key)
+      if (item) {
+        const avatarData = JSON.parse(item)
+        setAvatarOptions({
+        ...avatarData,
+        key: key
+      })
+      setIsEditing(true)
+      showAlert(`Editing ${avatarData.name}`, 'info')
+    }
+  }, [setIsEditing])
+
   return (
     <div className="app_container">
       <AvatarContext.Provider value = {{avatarOptions, setAvatarOptions}}>
@@ -174,8 +193,7 @@ function App() {
                   </div>
                   <div className="avatar_list">
                     <ul>
-                      {avatarList && [...avatarList]
-                        .sort((a, b) => a.name.localeCompare(b.name))
+                      {sortedAvatarList && [...sortedAvatarList]
                         .map((avatar) => {
                           return (
                             <RobotListItem
@@ -183,18 +201,7 @@ function App() {
                               name={avatar.name}
                               url={avatar.URL} 
                               key={avatar.key}
-                              onEdit={(key) => {
-                                const item = localStorage.getItem(key)
-                                if (item) {
-                                  const avatarData = JSON.parse(item)
-                                  setAvatarOptions({
-                                    ...avatarData,
-                                    key: key
-                                  })
-                                  setIsEditing(true)
-                                  showAlert(`Editing ${avatar.name}`, 'info')
-                                }
-                              }}
+                              onEdit={handleEdit}
                             />
                           )
                         })
