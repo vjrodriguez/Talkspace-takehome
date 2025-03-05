@@ -34,7 +34,8 @@ export const defaultRobot: AvatarOptions = {
   mouth: "grill02",
   sides: "square",
   texture: "dots",
-  top: "lights"
+  top: "lights", 
+  key: ""
 }
 
 // options for customization: 

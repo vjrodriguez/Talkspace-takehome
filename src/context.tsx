@@ -40,7 +40,7 @@ export const AlertContextProvider = ({children}: {children: ReactNode}) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log("alertMessage", alertMessage)
+    //  console.log("alertMessage", alertMessage)
       if(alertMessage) {
         setAlertMessage(undefined)
         setAlertSeverity(undefined)
@@ -70,6 +70,26 @@ export const AlertContextProvider = ({children}: {children: ReactNode}) => {
   )
 }
 
+interface EditingContextType {
+  isEditing: boolean
+  setIsEditing: (isEditing: boolean) => void
+}
+
+interface EditingContextProviderProps {
+  children: ReactNode
+}
+
+export const EditingContextProvider = ({ children }: EditingContextProviderProps) => {
+  const [isEditing, setIsEditing] = useState(false)
+
+  return (
+    <EditingContext.Provider value={{ isEditing, setIsEditing }}>
+      {children}
+    </EditingContext.Provider>
+  )
+} 
+
 export const AvatarContext = createContext<AvatarContextType>({} as AvatarContextType)
 export const AvatarURLContext = createContext<string>("")
 export const AvatarListContext = createContext<AvatarListContextType>({} as AvatarListContextType)
+export const EditingContext = createContext<EditingContextType>({} as EditingContextType)

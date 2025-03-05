@@ -10,6 +10,7 @@ export type AvatarOptions = {
   sides: string,
   texture: string,
   top: string,
+  key: string
 }
 
 export type AvatarURL = string | undefined

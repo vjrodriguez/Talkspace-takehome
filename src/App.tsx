@@ -5,10 +5,11 @@ import ColorPicker from './components/UI/ColorPicker'
 import TextInput from './components/UI/TextInput'
 import { useEffect, useState, useContext } from 'react'
 import { useOnUpdateAvatarList } from './Hooks'
-import { AvatarContext, AvatarURLContext, AvatarListContext, AlertContext } from './context'
+import { AvatarContext, AvatarURLContext, AvatarListContext, AlertContext, EditingContext } from './context'
 import { generateKey,buildURL, defaultRobot } from './Services'
 import RobotListItem from './components/RobotListItem'
 import SaveButton from './components/UI/SaveButton'
+import ResetButton from './components/UI/ResetButton'
 import { AvatarListItem, AvatarOptions } from './Types'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   const [avatarList, setAvatarList] = useState<AvatarListItem[]>([])
   const [isSaving, setIsSaving] = useState(false)
   const [shouldResetTabs, setShouldResetTabs] = useState(false)
+  const { isEditing, setIsEditing } = useContext(EditingContext)
 
   const { showAlert } = useContext(AlertContext)
 
@@ -41,6 +43,14 @@ function App() {
     })
   }
 
+  const handleReset = () => {
+    setAvatarOptions(defaultRobot)
+    setShouldResetTabs(true)
+    setTimeout(() => {
+      setShouldResetTabs(false)
+    }, 100)
+  }
+
   const saveAvatar = async (url: string, name: string) => {
     if (nameExists(name)) {
       showAlert('This name already exists. Please choose a different name.', 'warning')
@@ -51,7 +61,20 @@ function App() {
     try {
       // to test the loading state/mimic an API call uncomment the following line since localStorage is instantaneous
       // await new Promise(resolve => setTimeout(resolve, 500))
-      window.localStorage.setItem(generateKey(name), JSON.stringify({URL:url, name:name}))
+      // when editing an avatar later, we need all these properties to recreate the exact same avatar. If we only stored the URL and name, we wouldn't have the individual options that make up the avatar.
+       window.localStorage.setItem(generateKey(name), JSON.stringify({
+        URL: url,
+        name: name,
+        baseColor: avatarOptions.baseColor,
+        backgroundColor: avatarOptions.backgroundColor,
+        eyes: avatarOptions.eyes,
+        face: avatarOptions.face,
+        mouth: avatarOptions.mouth,
+        sides: avatarOptions.sides,
+        texture: avatarOptions.texture,
+        top: avatarOptions.top, 
+        key: generateKey(name)
+      }))
       setAvatarList(useOnUpdateAvatarList())
       setAvatarOptions(defaultRobot)
       setShouldResetTabs(true)
@@ -61,6 +84,39 @@ function App() {
       showAlert('Failed to save avatar. Please try again.', 'error')
     } finally {
       setIsSaving(false)
+      setTimeout(() => {
+        setShouldResetTabs(false)
+      }, 100)
+    }
+  }
+
+  const updateAvatar = async (avatarOptions: AvatarOptions) => {
+    setIsSaving(true)
+    try {
+      // Get the existing item from localStorage using the key
+      const existingItem = window.localStorage.getItem(avatarOptions.key)
+      if (!existingItem) {
+        showAlert('Avatar not found. Please try again.', 'error')
+        return
+      }
+
+      // Update the item in localStorage with new options
+      window.localStorage.setItem(avatarOptions.key, JSON.stringify({
+        ...JSON.parse(existingItem),
+        ...avatarOptions,
+        URL: buildURL(avatarOptions)
+      }))
+
+      setAvatarList(useOnUpdateAvatarList())
+      setAvatarOptions(defaultRobot)
+      setShouldResetTabs(true)
+      showAlert('Avatar updated successfully!', 'success')
+    } catch(error) {
+      console.error('Error updating avatar:', error)
+      showAlert('Failed to update avatar. Please try again.', 'error')
+    } finally {
+      setIsSaving(false)
+      setIsEditing(false)
       setTimeout(() => {
         setShouldResetTabs(false)
       }, 100)
@@ -86,14 +142,21 @@ function App() {
                       <SaveButton
                         disabled={!avatarOptions?.name || isSaving} 
                         handleOnClick={() => {
-                          if (avatarOptions?.name) {
+                          if (avatarOptions?.name && !isEditing) {
                             saveAvatar(buildURL(avatarOptions), avatarOptions.name)
+                          } else if (avatarOptions?.name && isEditing) {
+                            updateAvatar(avatarOptions)
                           }
                         }}
                         isLoading={isSaving}
                       >
                         {isSaving ? '...' : '+'}
                       </SaveButton>
+                      <ResetButton
+                        handleOnClick={handleReset}
+                      >
+                        ↺
+                      </ResetButton>
                     </div>
                     <div className="row">
                       <ColorPicker
@@ -120,6 +183,17 @@ function App() {
                               name={avatar.name}
                               url={avatar.URL} 
                               key={avatar.key}
+                              onEdit={(key) => {
+                                const item = localStorage.getItem(key)
+                                if (item) {
+                                  const avatarData = JSON.parse(item)
+                                  setAvatarOptions({
+                                    ...avatarData,
+                                    key: key
+                                  })
+                                  setIsEditing(true)
+                                }
+                              }}
                             />
                           )
                         })
