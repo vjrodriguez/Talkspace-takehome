@@ -1,6 +1,6 @@
 import { useOnUpdateAvatarList } from './../Hooks'
 import { useContext } from 'react'
-import { AvatarListContext } from './../context'
+import { AlertContext, AvatarListContext } from './../context'
 import '../styles/robotListItem.css'
 
 interface Props {
@@ -12,14 +12,17 @@ interface Props {
 const RobotListItem = (props: Props) => {
   const {keyName, name, url} = props
   const {avatarList, setAvatarList} = useContext(AvatarListContext)
+  const {showAlert} = useContext(AlertContext)
 
   const deleteAvatar = (keyN:string) => {
     try {
       window.localStorage.removeItem(keyN)
+      setAvatarList(useOnUpdateAvatarList())
+      showAlert(`Successfully deleted ${name}.`, 'success')
     } catch(error){
       console.log(error)
+      showAlert('Unable to delete robot. Please try again later.', 'error')
     }
-    setAvatarList(useOnUpdateAvatarList())
   }
 
   return (
@@ -28,7 +31,10 @@ const RobotListItem = (props: Props) => {
         <span className="item_avatar">
           <img
             src={url}
-            alt={`robot avatar`}
+            alt={`${name} Avatar`}
+            // Enables lazy loading of images and improve performance when multiple images are being loaded
+            loading="lazy"
+            decoding="async"
           />
         </span>
         <span className="avatar_item_name">{name}</span>

@@ -1,3 +1,5 @@
+import { AlertSeverity } from "./components/UI/Alert"
+
 export type AvatarOptions = {
   name: string,
   backgroundColor: string,
@@ -8,7 +10,7 @@ export type AvatarOptions = {
   sides: string,
   texture: string,
   top: string,
-} | undefined 
+}
 
 export type AvatarURL = string | undefined
 
@@ -39,3 +41,9 @@ export interface AvatarListItem {
   name: string;
 }
 export type AvatarList = AvatarListItem[]
+
+export interface AlertState {
+  show: boolean
+  message: string
+  severity: AlertSeverity
+}

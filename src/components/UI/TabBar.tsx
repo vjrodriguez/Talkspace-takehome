@@ -1,23 +1,30 @@
 import { TabData } from '../../Types'
 import { AvatarOptions } from '../../Types'
 import '../../styles/UI/tabBar.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-type AvatarKey = keyof Exclude<AvatarOptions, undefined>;
+type AvatarKey = keyof AvatarOptions;
 
 interface Props {
   tabData: TabData[]
   handleOnClick: (e?: AvatarKey) => void 
+  shouldReset?: boolean
 }
 
 const TabBar = (props: Props) => {
-  const {tabData, handleOnClick} = props
+  const {tabData, handleOnClick, shouldReset} = props
   const [activeTab, setActiveTab] = useState<AvatarKey>(tabData[0].option as AvatarKey)
   
-  const onClick = () => {
-    const et:any = event?.target;
-    setActiveTab(et.value as AvatarKey)
-    handleOnClick(et.value as AvatarKey)
+  useEffect(() => {
+    if (shouldReset) {
+      setActiveTab(tabData[0].option as AvatarKey)
+      handleOnClick(tabData[0].option as AvatarKey)
+    }
+  }, [shouldReset, tabData, handleOnClick])
+
+  const onClick = (option: string) => {
+    setActiveTab(option as AvatarKey)
+    handleOnClick(option as AvatarKey)
   }
 
   return (
@@ -26,10 +33,10 @@ const TabBar = (props: Props) => {
         {tabData.map((tab, i) => {
             const isActive = activeTab === tab.option as AvatarKey
             return <button
-                      key= {`tab_${i}`}
-                      value = {tab.option} 
-                      className = {isActive ? "active" : "" }
-                      onClick={() => onClick()}>
+                      key={`tab_${i}`}
+                      value={tab.option} 
+                      className={isActive ? "active" : ""}
+                      onClick={() => onClick(tab.option)}>
                         {tab.label}
                       </button>
           }
