@@ -19,7 +19,7 @@ const TextInput = (props: Props) => {
     className,
     handleOnChange } = props
 
-  const {avatarOptions, setAvatarOptions} = useContext(AvatarContext)
+  const {avatarOptions} = useContext(AvatarContext)
 
   return (
     <>
