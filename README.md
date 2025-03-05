@@ -34,3 +34,11 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Performance improvements
+
+Lighthouse shows performance score of 90 from 78 by enhancements made (lazy loading, can also leverage babel-minify)
+
+## TODO:
+
+Add tests, additional feature ideas: avatar editing, dark mode, responsive UI for different device sizes, uselocalStorage hook?
