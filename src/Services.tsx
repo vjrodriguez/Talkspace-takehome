@@ -21,7 +21,8 @@ export const buildURL = (avatarOptions: AvatarOptions | undefined, overrideOptio
 
 // generate unique-ish ID
 export const generateKey = (name: string) => {
-  return `${name}${Math.floor(Math.random()*1000000)}`
+  // use built-in crypto.randomUUID() as a more secure way to generate a unique ID 
+  return `${name}${crypto.randomUUID()}`
 }
 
 export const defaultRobot: AvatarOptions = {
