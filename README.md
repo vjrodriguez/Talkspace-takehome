@@ -28,12 +28,6 @@ pull
 npm install
 npm run dev
 
-## Run tests
-
-npm test
-npm run test:watch # Run tests in watch mode
-npm run test:coverage # Run tests with coverage report
-
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -41,13 +35,31 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+## Run tests
+
+npm test
+npm run test:watch # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
+
 ## Recent Changes
+
+### UI/UX Improvements
+
+- Added loading states for save operations
+- Implemented Alert component for user feedback
+- Improved button states and interactions
+
+### Code Quality
+
+- Improved type safety in components
+- Added proper error handling
+- Implemented loading states for async operations
 
 ### Performance Improvements
 
 - Implemented code minification using Terser
 - Optimized build configuration for better performance
-- Lighthouse performance score improved from 78 to 90
+- Lighthouse performance score improved from 78 to 88
 
 ### Testing Infrastructure
 
@@ -56,18 +68,6 @@ Currently, two official plugins are available:
 - Set up Jest DOM for DOM assertions
 - Added test coverage reporting
 - Created initial test suite for SaveButton component
-
-### Code Quality
-
-- Improved type safety in components
-- Added proper error handling
-- Implemented loading states for async operations
-
-### UI/UX Improvements
-
-- Added loading states for save operations
-- Implemented Alert component for user feedback
-- Improved button states and interactions
 
 ## Future Improvements/TODO
 
