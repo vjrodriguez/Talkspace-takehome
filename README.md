@@ -28,6 +28,12 @@ pull
 npm install
 npm run dev
 
+## Run tests
+
+npm test
+npm run test:watch # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -35,10 +41,86 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Performance improvements
+## Recent Changes
 
-Lighthouse shows performance score of 90 from 78 by enhancements made (lazy loading, can also leverage babel-minify)
+### Performance Improvements
 
-## TODO:
+- Implemented code minification using Terser
+- Optimized build configuration for better performance
+- Lighthouse performance score improved from 78 to 90
 
-Add tests, additional feature ideas: avatar editing, dark mode, responsive UI for different device sizes, uselocalStorage hook?
+### Testing Infrastructure
+
+- Added Vitest for test running
+- Integrated React Testing Library for component testing
+- Set up Jest DOM for DOM assertions
+- Added test coverage reporting
+- Created initial test suite for SaveButton component
+
+### Code Quality
+
+- Improved type safety in components
+- Added proper error handling
+- Implemented loading states for async operations
+
+### UI/UX Improvements
+
+- Added loading states for save operations
+- Implemented Alert component for user feedback
+- Improved button states and interactions
+
+## Future Improvements/TODO
+
+### Testing
+
+- [ ] Add unit tests for all UI components
+- [ ] Add integration tests for user flows
+- [ ] Set up end-to-end testing with Cypress or Playwright
+- [ ] Add test coverage thresholds
+- [ ] Implement snapshot testing for UI components
+
+### Performance
+
+- [ ] Implement React.memo() for performance optimization
+- [ ] Add proper code splitting
+- [ ] Optimize bundle size
+- [ ] Implement proper lazy loading
+- [ ] Add service worker for PWA capabilities
+
+### Code Quality
+
+- [ ] Implement proper error boundaries
+- [ ] Add comprehensive TypeScript types
+- [ ] Set up proper state management solution
+- [ ] Add proper documentation
+- [ ] Implement stricter ESLint rules
+
+### Features
+
+- [ ] Implement dark mode
+- [ ] Add responsive UI for different device sizes
+- [ ] Create custom useLocalStorage hook
+- [ ] Implement undo/redo functionality
+
+### User Experience
+
+- [ ] Add proper form validation
+- [ ] Implement proper error messages
+- [ ] Add keyboard navigation
+- [ ] Improve accessibility
+- [ ] Add animations for better feedback
+
+### Security
+
+- [ ] Implement proper input validation
+- [ ] Add proper error handling
+- [ ] Implement proper data sanitization
+- [ ] Add security headers
+
+### Development Experience
+
+- [ ] Set up proper CI/CD pipeline
+- [ ] Add pre-commit hooks
+- [ ] Implement proper logging
+- [ ] Add development documentation
+- [ ] Set up proper development environment
