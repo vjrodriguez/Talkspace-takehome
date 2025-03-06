@@ -1,5 +1,3 @@
-import { AlertSeverity } from "./components/UI/Alert"
-
 export type AvatarOptions = {
   name: string,
   backgroundColor: string,
@@ -42,6 +40,8 @@ export interface AvatarListItem {
   name: string;
 }
 export type AvatarList = AvatarListItem[]
+
+export type AlertSeverity = 'success' | 'error' | 'warning' | 'info' 
 
 export interface AlertState {
   show: boolean

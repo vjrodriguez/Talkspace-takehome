@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react'
 import '../../styles/UI/Alert.css'
-
-export type AlertSeverity = 'success' | 'error' | 'warning' | 'info' 
+import { AlertSeverity } from '../../Types'
 
 interface Props {
   severity: AlertSeverity

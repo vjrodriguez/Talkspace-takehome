@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react"
 import { AvatarOptions, AvatarList } from "./Types"
 import Alert from "./components/UI/Alert";
-import { AlertSeverity } from "./components/UI/Alert";
+import { AlertSeverity } from "./Types";
 
 interface AvatarContextType {
   avatarOptions: AvatarOptions;
