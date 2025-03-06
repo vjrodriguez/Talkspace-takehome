@@ -23,9 +23,9 @@ export const AlertContext = createContext<AlertContext>({} as AlertContext)
 export const AlertContextProvider = ({children}: {children: ReactNode}) => {
   const [alertMessage, setAlertMessage] = useState<string | undefined>(undefined)
 
-  const [alertSeverity, setAlertSeverity] = useState<Severity | undefined>(undefined)
+  const [alertSeverity, setAlertSeverity] = useState<AlertSeverity | undefined>(undefined)
 
-  const showAlert = (message: string, severity: Severity) =>{
+  const showAlert = (message: string, severity: AlertSeverity) =>{
     setAlertMessage(message);
     setAlertSeverity(severity)
   }
@@ -73,6 +73,10 @@ interface EditingContextType {
   setIsEditing: (isEditing: boolean) => void
 }
 
+export const EditingContext = createContext<EditingContextType>({
+  isEditing: false,
+  setIsEditing: () => {},
+})
 interface EditingContextProviderProps {
   children: ReactNode
 }
@@ -90,4 +94,3 @@ export const EditingContextProvider = ({ children }: EditingContextProviderProps
 export const AvatarContext = createContext<AvatarContextType>({} as AvatarContextType)
 export const AvatarURLContext = createContext<string>("")
 export const AvatarListContext = createContext<AvatarListContextType>({} as AvatarListContextType)
-export const EditingContext = createContext<EditingContextType>({} as EditingContextType)
