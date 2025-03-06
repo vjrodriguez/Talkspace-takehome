@@ -99,6 +99,17 @@ function App() {
   }
 
   const updateAvatar = async (avatarOptions: AvatarOptions) => {
+    // Check if the new name already exists (excluding the current avatar being edited)
+    const updatedNameExists = avatarList.some(avatar => 
+      avatar.name.toLowerCase() === avatarOptions.name.toLowerCase() && 
+      avatar.key !== avatarOptions.key
+    )
+    
+    if (updatedNameExists) {
+      showAlert('This name already exists. Please choose a different name.', 'warning')
+      return
+    }
+
     setIsSaving(true)
     try {
       // Get the existing item from localStorage using the key
