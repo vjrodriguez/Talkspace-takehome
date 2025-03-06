@@ -10,6 +10,7 @@ import { generateKey,buildURL, defaultRobot } from './Services'
 import RobotListItem from './components/RobotListItem'
 import SaveButton from './components/UI/SaveButton'
 import ResetButton from './components/UI/ResetButton'
+import CancelEditButton from './components/UI/CancelEditButton'
 import { AvatarListItem, AvatarOptions } from './Types'
 
 function App() {
@@ -44,6 +45,15 @@ function App() {
   const handleReset = () => {
     setAvatarOptions(defaultRobot)
     setShouldResetTabs(true)
+    setTimeout(() => {
+      setShouldResetTabs(false)
+    }, 100)
+  }
+
+  const handleCancel = () => {
+    setAvatarOptions(defaultRobot)
+    setShouldResetTabs(true)
+    setIsEditing(false)
     setTimeout(() => {
       setShouldResetTabs(false)
     }, 100)
@@ -174,6 +184,9 @@ function App() {
                       >
                         ↺
                       </ResetButton>
+                      {isEditing && <CancelEditButton handleOnClick={handleCancel}>
+                        ×
+                      </CancelEditButton>}
                     </div>
                     <div className="row">
                       <ColorPicker
