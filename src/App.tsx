@@ -13,9 +13,20 @@ import ResetButton from './components/UI/ResetButton'
 import CancelEditButton from './components/UI/CancelEditButton'
 import { AvatarListItem, AvatarOptions } from './Types'
 
+/**
+ * Main application component that manages avatar creation and editing.
+ * Handles state management for:
+ * - Avatar creation and customization
+ * - List management and persistence
+ * - Edit/Save/Reset operations
+ * - Loading and error states
+ */
 function App() {
+  // Core state for avatar management
   const [avatarOptions, setAvatarOptions] = useState<AvatarOptions>(defaultRobot)
   const [avatarList, setAvatarList] = useState<AvatarListItem[]>([])
+
+  // UI state management
   const [isSaving, setIsSaving] = useState(false)
   const [shouldResetTabs, setShouldResetTabs] = useState(false)
   const { isEditing, setIsEditing } = useContext(EditingContext)
