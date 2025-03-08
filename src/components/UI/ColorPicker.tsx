@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { useContext } from 'react'
 import { AvatarContext } from '../../context'
 import { COLOR_PALETTE } from '../../Services'
+import { AvatarOptions } from '../../Types'
 import '../../styles/UI/colorPicker.css'
 
 interface Props {
   label: string;
   defaultColor: string; 
-  optionKey: string;
+  optionKey: 'baseColor' | 'backgroundColor';
 }
 
 const ColorPicker = (props: Props) => {
@@ -16,7 +17,10 @@ const ColorPicker = (props: Props) => {
   const [showPicker, setShowPicker] = useState(false)
   const palette = COLOR_PALETTE
   
-  const handleOnClick = (optionKey:string, color: string) => {
+  type NonNullAvatarOptions = Exclude<AvatarOptions, undefined>
+  
+  const handleOnClick = (optionKey: keyof NonNullAvatarOptions, color: string) => {
+    if (!avatarOptions) return
     const _O = {...avatarOptions}
     _O[optionKey] = color
     setAvatarOptions(_O)

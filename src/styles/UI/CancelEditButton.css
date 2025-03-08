@@ -1,0 +1,42 @@
+button.cancel_edit_button {
+  margin-top: 16px;
+  margin-right: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  rotate: 45deg;
+  height: 46px;
+  width: 46px;
+  background-color: #ff6b6b;
+  font-weight: 400;
+  color: #c92a2a;
+  border-top-left-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-bottom-right-radius: 23px;
+  border-top-right-radius: 3px;
+  border: none;
+  align-self: flex-end;
+  box-shadow: 0 0 5px rgba(201, 42, 42, 0.5);
+  transition: all 0.3s ease;
+  margin-left: 8px;
+}
+
+.cancel_edit_button:hover {
+  box-shadow: 0 0 8px rgba(201, 42, 42, 0.7);
+  background-color: #ff8787;
+}
+
+.cancel_edit_button:active {
+  box-shadow: 0 0 8px rgba(201, 42, 42, 0.7);
+  background-color: #fa5252;
+}
+
+.cancel_edit_button span {
+  display: flex;
+  align-self: center;
+  font-size: 2rem;
+  padding-top: 3px;
+  line-height: 5;
+  rotate: -45deg;
+} 

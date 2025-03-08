@@ -1,0 +1,41 @@
+button.reset_button {
+  margin-top: 16px;
+  margin-right: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  rotate: 45deg;
+  height: 46px;
+  width: 46px;
+  background-color: #e3f2fd;
+  font-weight: 400;
+  color: #1976d2;
+  border-top-left-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-bottom-right-radius: 23px;
+  border-top-right-radius: 3px;
+  border: none;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
+  margin-left: 8px;
+  align-self: flex-end;
+}
+
+.reset_button:hover {
+  box-shadow: 0 0 8px rgba(25, 118, 210, 0.7);
+  background-color: #bbdefb;
+}
+
+.reset_button:active {
+  box-shadow: 0 0 8px rgba(25, 118, 210, 0.7);
+  background-color: #90caf9;
+}
+
+.reset_button span {
+  display: flex;
+  align-self: center;
+  font-size: 2rem;
+  padding-top: 3px;
+  line-height: 5;
+  rotate: -45deg;
+} 
