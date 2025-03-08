@@ -7,7 +7,7 @@ import { buildURL } from '../Services'
 import { useContext } from 'react'
 import { AvatarContext } from '../context'
 
-type AvatarKey = keyof AvatarOptions;
+type AvatarKey = Exclude<keyof AvatarOptions, 'name' | 'key'>;
 
 interface Props {
   shouldReset?: boolean
@@ -71,7 +71,7 @@ const OptionsPicker = ({ shouldReset }: Props) => {
                 onClick={() => {updateAvatar(activeTab, opt)}}
               >
                 <img
-                  src={buildURL(avatarOptions, {name: activeTab, value: opt})}
+                  src={buildURL(avatarOptions, { name: activeTab, value: opt })}
                   alt="avatar"
                 />
               </div>

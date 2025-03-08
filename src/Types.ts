@@ -19,7 +19,7 @@ export interface Avatar {
 }
 
 export interface OverrideOption {
-  name: "name" | "backgroundColor" | "baseColor" | "eyes" | "face" | "mouth" | "sides" | "texture" | "top"
+  name: "backgroundColor" | "baseColor" | "eyes" | "face" | "mouth" | "sides" | "texture" | "top"
   value: string
 }
 

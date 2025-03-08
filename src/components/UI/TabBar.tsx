@@ -1,13 +1,12 @@
-import { TabData } from '../../Types'
-import { AvatarOptions } from '../../Types'
+import { TabData, AvatarOptions } from '../../Types'
 import '../../styles/UI/tabBar.css'
 import { useState, useEffect } from 'react'
 
-type AvatarKey = keyof AvatarOptions;
+type AvatarKey = Exclude<keyof AvatarOptions, 'name' | 'key'>;
 
 interface Props {
   tabData: TabData[]
-  handleOnClick: (e?: AvatarKey) => void 
+  handleOnClick: (e?: AvatarKey) => void
   shouldReset?: boolean
 }
 
