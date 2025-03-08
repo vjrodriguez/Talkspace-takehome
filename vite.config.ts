@@ -1,11 +1,8 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import type { UserConfigExport } from 'vitest/config'
+import { defineConfig as defineVitestConfig } from 'vitest/config'
 
-// https://vite.dev/config/
-export default defineConfig({
+export default defineVitestConfig({
   plugins: [react()],
-  // Lighthouse performace score went from 90 to 89 after adding minify - perhaps it's worth it to remove? 
   build: {
     minify: 'terser',
     terserOptions: {
