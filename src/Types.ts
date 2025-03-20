@@ -8,7 +8,8 @@ export type AvatarOptions = {
   sides: string,
   texture: string,
   top: string,
-} | undefined 
+  key: string
+}
 
 export type AvatarURL = string | undefined
 
@@ -18,7 +19,7 @@ export interface Avatar {
 }
 
 export interface OverrideOption {
-  name: "name" | "backgroundColor" | "baseColor" | "eyes" | "face" | "mouth" | "sides" | "texture" | "top"
+  name: "backgroundColor" | "baseColor" | "eyes" | "face" | "mouth" | "sides" | "texture" | "top"
   value: string
 }
 
@@ -39,3 +40,11 @@ export interface AvatarListItem {
   name: string;
 }
 export type AvatarList = AvatarListItem[]
+
+export type AlertSeverity = 'success' | 'error' | 'warning' | 'info' 
+
+export interface AlertState {
+  show: boolean
+  message: string
+  severity: AlertSeverity
+}
