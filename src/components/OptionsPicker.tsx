@@ -7,6 +7,15 @@ import { buildURL } from '../Services'
 import { useContext } from 'react'
 import { AvatarContext } from '../context'
 
+/*
+  - Create a type that only includes the customizable avatar properties
+  - Exclude metadata properties (name and key) that aren't actual avatar features
+  - Ensure type safety when working with avatar customization options
+  - Make it clear which properties are meant for avatar customization vs. management
+  - This is a good example of type narrowing, where we narrow down the type of the activeTab variable based on the value of the customizationOptions array.
+  - Creating type-safe functions that only work with customizable properties
+*/
+// The Exclude utility type uses generics to create a new type by excluding specific keys.
 type AvatarKey = Exclude<keyof AvatarOptions, 'name' | 'key'>;
 
 interface Props {

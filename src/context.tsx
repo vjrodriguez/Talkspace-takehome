@@ -12,19 +12,22 @@ interface AvatarListContextType {
   avatarList: AvatarList;
   setAvatarList: React.Dispatch<React.SetStateAction<AvatarList>>;
 }
-
+// define the shape of the alert context
 interface AlertContext {
+  // a type-safe way to show alerts
   showAlert: (message: string, severity: AlertSeverity) => void
 }
-
+// initialize with a type assertion for empty object
 export const AlertContext = createContext<AlertContext>({} as AlertContext)
 
 
 export const AlertContextProvider = ({children}: {children: ReactNode}) => {
+  // state for the alert message
   const [alertMessage, setAlertMessage] = useState<string | undefined>(undefined)
-
+  // state for the alert severity
   const [alertSeverity, setAlertSeverity] = useState<AlertSeverity | undefined>(undefined)
 
+  // function to show the alert
   const showAlert = (message: string, severity: AlertSeverity) =>{
     setAlertMessage(message);
     setAlertSeverity(severity)
@@ -51,6 +54,7 @@ export const AlertContextProvider = ({children}: {children: ReactNode}) => {
     
   }, [alertMessage])
 
+  // return the alert context provider
   return (
     <AlertContext.Provider value={{showAlert}}>
       {

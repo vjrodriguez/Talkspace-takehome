@@ -44,4 +44,24 @@ const Alert = (props: PropsWithChildren<Props>) => {
   )
 }
 
+/*
+Benefits:
+1. Centralized Notifications
+- Single source of truth for alerts
+- Consistent styling and behavior
+2. User Experience
+- Non-intrusive notifications
+- Auto-dismissal
+- Manual dismissal option
+- Visual feedback through icons
+3. Developer Experience
+- Simple API (showAlert)
+- Type safety
+- Reusable component
+- Context-based state management
+4. Maintainability
+- Separated concerns
+- Clear component structure
+- TypeScript type safety
+*/
 export default Alert 

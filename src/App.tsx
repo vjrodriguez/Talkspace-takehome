@@ -155,6 +155,7 @@ function App() {
 
     // Memoize the sorted avatar list
     const sortedAvatarList = useMemo(() => {
+      // creates a new reference so React and ReactDOM can detect changes; and we din't mutate state/original array directly, also dependency tracking needs clean references
       return avatarList && [...avatarList].sort((a, b) => a.name.localeCompare(b.name))
     }, [avatarList])
 
